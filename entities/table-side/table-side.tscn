@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/tiles/table-side-2.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 13 )
+extents = Vector2( 8, 8 )
 
 [node name="TableSide" type="StaticBody2D"]
 
@@ -13,10 +13,9 @@ position = Vector2( 8, 8 )
 texture = ExtResource( 1 )
 
 [node name="table-side-2" type="Sprite" parent="."]
-position = Vector2( 8, 23 )
+position = Vector2( 8, 20 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 8, 14 )
+position = Vector2( 8, 8 )
 shape = SubResource( 1 )
