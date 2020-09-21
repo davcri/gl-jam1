@@ -2,11 +2,16 @@ extends Node2D
 
 
 func pre_start(params):
-	print("\npre_start called with params = ")
 	for key in params:
 		var val = params[key]
-		printt("", key, val)
 
+
+func _ready() -> void:
+	pass
+	
 
 func start():
-	print("\nStart game logic!")
+	var war1 = $YSort/Warrior
+	war1.show_wanted_item()
+	
+

@@ -11,6 +11,7 @@ enum GFX_ID {
 
 export(GFX_ID) var warrior_sprite_id = GFX_ID.WAR_1 setget set_warrior_sprite_id
 onready var sprite = $Sprite
+onready var bubble = $Bubble
 
 
 func _ready() -> void:
@@ -29,8 +30,8 @@ func set_warrior_sprite_id(new_id):
 	
 	
 
-func show_wanted_item(wanted_item):
-	pass 
+func show_wanted_item():
+	bubble.show()
 
 
 func get_wanted_item():
