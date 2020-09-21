@@ -2,6 +2,9 @@ class_name Item
 extends KinematicBody2D
 
 
+var type = "sword"
+
+
 func enable_collisions():
 	$CollisionShape2D.set_deferred("disabled", false)
 	

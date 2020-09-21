@@ -21,10 +21,22 @@ visible = false
 position = Vector2( 0, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
 [node name="CheckItemArea" parent="." instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 0, 20 )
 collision_layer = 0
 collision_mask = 2
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ItemGrabPosition" type="Position2D" parent="."]
+visible = false
+position = Vector2( 0, 8 )
+__meta__ = {
+"_gizmo_extents_": 6.0
+}
+[connection signal="item_found" from="CheckItemArea" to="." method="_on_CheckItemArea_item_found"]
