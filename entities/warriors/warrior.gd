@@ -2,6 +2,9 @@ class_name Warrior
 extends KinematicBody2D
 tool
 
+signal warrior_went_away(warrior) # TODO: fix this. It does not take into account camera zoom
+signal warrior_started_going_away(warrior)
+
 enum GFX_ID {
 	WAR_1,
 	WAR_2,
@@ -15,12 +18,19 @@ onready var sprite = $Sprite
 onready var bubble = $Bubble
 onready var tween = $Tween
 
-var wanted_item_type: String
+var wanted_item_data: Item.ItemData
 
 
 func _ready() -> void:
 	_change_texture(warrior_sprite_id)
-	wanted_item_type = "sword"
+	wanted_item_data = _calculate_wanted_item()
+
+
+func _calculate_wanted_item():
+	var test = Item.ItemData.new()
+	test.type = "sword"
+	test.name = "Dark sword"
+	return test
 
 
 func _change_texture(sprite_id):
@@ -38,15 +48,17 @@ func show_wanted_item():
 	bubble.show()
 
 
-func get_wanted_item_type() -> String:
-	return wanted_item_type
-
-
 func _on_CheckItemArea_item_found(item: Item) -> void:
-	if item.type == get_wanted_item_type():
+	if item_is_good(item.data):
 		_on_wanted_item_found(item)
 	else:
-		print("Not my cup of tea")
+		print("Item not wanted")
+		
+	
+func item_is_good(item_data: Item.ItemData):
+	# TODO: add other logic. For now checks only item type
+	return wanted_item_data.type == item_data.type
+	
 
 
 func _on_wanted_item_found(item):
@@ -77,6 +89,7 @@ func _on_item_grabbed(a, b, item):
 	
 
 func go_away():
+	emit_signal("warrior_started_going_away", self)
 	tween.interpolate_property(
 		self,
 		"position",
@@ -87,3 +100,5 @@ func go_away():
 		Tween.TRANS_LINEAR
 	)
 	tween.start()
+	yield(tween, "tween_completed")
+	emit_signal("warrior_went_away", self)

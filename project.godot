@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Item",
 "language": "GDScript",
-"path": "res://scenes/gameplay/item.gd"
+"path": "res://entities/item/item.gd"
 }, {
 "base": "Node",
 "class": "Main",

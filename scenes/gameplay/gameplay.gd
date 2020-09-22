@@ -14,4 +14,3 @@ func start():
 	var war1 = $YSort/Warrior
 	war1.show_wanted_item()
 	
-
