@@ -24,13 +24,11 @@ var wanted_item_data: Item.ItemData
 func _ready() -> void:
 	_change_texture(warrior_sprite_id)
 	wanted_item_data = _calculate_wanted_item()
+	bubble.update_texture(wanted_item_data.texture_name)
 
 
 func _calculate_wanted_item():
-	var test = Item.ItemData.new()
-	test.type = "sword"
-	test.name = "Dark sword"
-	return test
+	return ItemsDb.entries[0]
 
 
 func _change_texture(sprite_id):

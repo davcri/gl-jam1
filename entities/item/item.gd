@@ -6,11 +6,8 @@ class ItemData:
 	var name: String
 	var type: String
 	var cost: int
+	var texture_name
 	
-	func ciao():
-		print("Hello")
-	
-
 var data: ItemData
 
 
@@ -19,10 +16,19 @@ func _ready() -> void:
 
 
 func _init_data():
+	var file = File.new()
+	file.open("res://data/items.csv", File.READ)
+	var csv_data = file.get_csv_line()
 	data = ItemData.new()
-	data.cost = 100
-	data.type = "sword"
-	data.name = "Simple Sword"
+	data.name = csv_data[0]
+	data.cost = csv_data[1]
+	data.type = csv_data[2]
+	data.texture_name = csv_data[3]
+	_load_texture(data.texture_name)
+	
+
+func _load_texture(texture_name):
+	$Sprite.texture = ItemsDb.get_texture(texture_name)
 	
 
 func enable_collisions():
