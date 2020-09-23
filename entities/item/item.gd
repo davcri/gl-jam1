@@ -12,20 +12,15 @@ var data: ItemData
 
 
 func _ready() -> void:
-	_init_data()
-
-
-func _init_data():
-	var file = File.new()
-	file.open("res://data/items.csv", File.READ)
-	var csv_data = file.get_csv_line()
-	data = ItemData.new()
-	data.name = csv_data[0]
-	data.cost = csv_data[1]
-	data.type = csv_data[2]
-	data.texture_name = csv_data[3]
-	_load_texture(data.texture_name)
+	load_item_data()
 	
+	
+func load_item_data():
+	data = ItemsDb.entries[0]
+	for e in ItemsDb.entries:
+		print(e.name)
+	_load_texture(data.texture_name)
+
 
 func _load_texture(texture_name):
 	$Sprite.texture = ItemsDb.get_texture(texture_name)

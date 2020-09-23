@@ -2,10 +2,11 @@ extends Node
 
 var entries = []
 
+const CSV_FILE_PATH = "res://data/items.txt"
 
 func _ready() -> void:
 	var file = File.new()
-	file.open("res://data/items.csv", File.READ)
+	file.open(CSV_FILE_PATH, File.READ)		
 	while !file.eof_reached():
 		var line = file.get_csv_line()
 		var item_data: Item.ItemData = Item.ItemData.new()
@@ -14,6 +15,7 @@ func _ready() -> void:
 		item_data.type = line[2]
 		item_data.texture_name = line[3]
 		entries.append(item_data)
+	file.close()
 
 
 func get_texture(texture_name):
