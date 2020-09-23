@@ -59,7 +59,7 @@ func _change_scene(new_scene: String, params= {}):
 	var instanced_scn = scn.instance()
 	main.active_scene_container.add_child(instanced_scn)
 	var load_time = OS.get_ticks_msec() - loading_start_time # ms
-	print("{elapsed}ms🕑🕑🕑🕑🕑🕑 loading for {scn}".format({ 'scn': new_scene, 'elapsed': load_time }))
+	print("{elapsed}ms loading for {scn}".format({ 'scn': new_scene, 'elapsed': load_time }))
 	# artificially wait some time in order to have a gentle game transition
 	if load_time < minimum_load_time:
 		yield(get_tree().create_timer((minimum_load_time - load_time) / 1000.0), "timeout")
