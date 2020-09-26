@@ -168,6 +168,7 @@ position = Vector2( 0, -1 )
 shape = SubResource( 9 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
 cast_to = Vector2( 0, 8 )
 script = ExtResource( 4 )
 

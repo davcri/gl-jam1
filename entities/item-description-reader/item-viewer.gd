@@ -11,7 +11,7 @@ func set_item_data(item: Item):
 	var name_v = values.get_node("Name")
 	var type_v = values.get_node("Type")
 	var cost_v = values.get_node("Cost")
-	
+
 	name_v.text = item.data.name
 	type_v.text = item.data.type
 	cost_v.text = str(item.data.cost)

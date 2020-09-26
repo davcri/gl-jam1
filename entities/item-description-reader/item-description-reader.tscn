@@ -14,7 +14,6 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [node name="ItemDescriptionReader" type="Node2D"]
-position = Vector2( 223, 119 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -125,5 +124,5 @@ texture = ExtResource( 4 )
 [node name="CheckItemArea" parent="." instance=ExtResource( 2 )]
 position = Vector2( -23, 0 )
 collision_mask = 2
+[connection signal="item_available" from="CheckItemArea" to="." method="_on_CheckItemArea_item_available"]
 [connection signal="item_exited" from="CheckItemArea" to="." method="_on_CheckItemArea_item_exited"]
-[connection signal="item_found" from="CheckItemArea" to="." method="_on_CheckItemArea_item_found"]

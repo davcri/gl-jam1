@@ -9,8 +9,6 @@ func _ready() -> void:
 		var item_node = item_scn.instance()
 		item_node.setup(data)
 		add_child(item_node)
-		item_node.position.x = 20
-		item_node.position.y = 20 + i * 20
+		item_node.position.x = 60
+		item_node.position.y = 80 + i * 16
 		i += 1
-		
-		

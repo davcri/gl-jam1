@@ -14,4 +14,4 @@ func close():
 
 func update_texture(texture_path: String):
 	icon_sprite.texture = ItemsDb.get_texture(texture_path)
-	
+

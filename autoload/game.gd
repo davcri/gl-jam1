@@ -10,8 +10,8 @@ func _ready() -> void:
 
 func _on_screen_resized():
 	register_size()
-	
-	
+
+
 func register_size():
 	size = get_viewport().get_visible_rect().size
 
@@ -22,10 +22,12 @@ func set_main_node(node: Main):
 
 func change_scene(new_scene, params= {}):
 	Scenes._change_scene(new_scene, params)
-	
-	
-func reparent_node(node: Node2D, new_parent, update_transform = true):
+
+
+func reparent_node(node: Node2D, new_parent: Node, update_transform = true):
 	var previous_xform = node.global_transform
 	node.get_parent().remove_child(node)
 	new_parent.add_child(node)
+	if update_transform == false:
+		return
 	node.global_transform = previous_xform

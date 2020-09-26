@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
 		position.y = rc.cast_to.y
 	if grabbed_item:
 		grabbed_item.position = global_position
-	
-	
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_select"):
 		if grabbed_item:
@@ -31,16 +31,18 @@ func grab():
 		if b is Item:
 			var item: Item = b
 			grabbed_item = item
-
-
-func disable_items_collisions():
-	p.set_collision_mask_bit(1, false)
-	
-	
-func enable_items_collisions():
-	p.set_collision_mask_bit(1, true)
+			item.change_state(item.STATES.GRABBED)
 
 
 func release():
 	enable_items_collisions()
+	grabbed_item.change_state(grabbed_item.STATES.IDLE)
 	grabbed_item = null
+
+
+func disable_items_collisions():
+	p.set_collision_mask_bit(1, false)
+
+
+func enable_items_collisions():
+	p.set_collision_mask_bit(1, true)

@@ -47,4 +47,4 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Equip"]
 texture = ExtResource( 5 )
-[connection signal="item_found" from="CheckItemArea" to="." method="_on_CheckItemArea_item_found"]
+[connection signal="item_available" from="CheckItemArea" to="." method="_on_CheckItemArea_item_available"]

@@ -30,7 +30,8 @@ func _ready() -> void:
 
 
 func _calculate_wanted_item():
-	return ItemsDb.entries[0] # TODO: implement this
+	randomize()
+	return ItemsDb.entries[randi() % len(ItemsDb.entries)] # TODO: implement this
 
 
 func _change_texture(sprite_id):
@@ -42,43 +43,44 @@ func _change_texture(sprite_id):
 func set_warrior_sprite_id(new_id):
 	warrior_sprite_id = new_id
 	_change_texture(warrior_sprite_id)
-	
+
 
 func show_wanted_item():
 	bubble.show()
 
 
-func _on_CheckItemArea_item_found(item: Item) -> void:
-	if item_is_good(item.data):
+func _on_CheckItemArea_item_available(item):
+	if item.state == item.STATES.GRABBED:
+		return
+	if is_item_good(item.data):
 		_on_wanted_item_found(item)
 	else:
+		# TODO:
 		print("Item not wanted")
-		
-	
-func item_is_good(item_data: Item.ItemData):
+
+
+func is_item_good(item_data: Item.ItemData):
 	# TODO: add other logic. For now checks only item type
-	if not wanted_item_data.has_meta("type"):
+	if wanted_item_data.type == null:
 		return false
-	return wanted_item_data.type == item_data.type
-	
+	return wanted_item_data.name == item_data.name
 
 
 func _on_wanted_item_found(item):
-	bubble.close()
-	item.disable_collisions()
-	yield(get_tree().create_timer(0.5), "timeout")
 	grab_item(item)
+	bubble.close()
 	yield(get_tree().create_timer(1.0), "timeout")
 	go_away()
-	
-	
+
+
 func grab_item(item):
+	item.change_state(item.STATES.GRABBED)
 	tween.interpolate_property(
 		item,
 		"position",
 		item.position,
 		$ItemGrabPosition.global_position,
-		0.3, 
+		0.2,
 		Tween.TRANS_QUAD,
 		Tween.EASE_OUT
 	)
@@ -88,7 +90,7 @@ func grab_item(item):
 
 func _on_item_grabbed(a, b, item):
 	Game.reparent_node(item, self)
-	
+
 
 func go_away():
 	emit_signal("warrior_started_going_away", self)
@@ -97,7 +99,7 @@ func go_away():
 		"position",
 		position,
 		Vector2(Game.size.x, position.y),
-		3, 
+		3,
 		Tween.TRANS_LINEAR,
 		Tween.TRANS_LINEAR
 	)

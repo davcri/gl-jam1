@@ -7,7 +7,7 @@ const CSV_FILE_PATH = "res://data/items.txt"
 
 func _init() -> void:
 	var file = File.new()
-	file.open(CSV_FILE_PATH, File.READ)		
+	file.open(CSV_FILE_PATH, File.READ)
 	while !file.eof_reached():
 		var line = file.get_csv_line()
 		var item_data: Item.ItemData = Item.ItemData.new()
