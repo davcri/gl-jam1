@@ -11,17 +11,15 @@ class ItemData:
 var data: ItemData
 
 
+func setup(p_data: ItemData):
+	data = p_data
+	_load_texture(p_data.texture_name)
+
+	
 func _ready() -> void:
-	load_item_data()
+	pass
 	
 	
-func load_item_data():
-	data = ItemsDb.entries[0]
-	for e in ItemsDb.entries:
-		print(e.name)
-	_load_texture(data.texture_name)
-
-
 func _load_texture(texture_name):
 	$Sprite.texture = ItemsDb.get_texture(texture_name)
 	

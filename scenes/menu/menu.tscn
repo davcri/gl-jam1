@@ -35,11 +35,11 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="CenterContainer"]
-margin_left = 169.0
-margin_right = 343.0
+margin_left = 224.0
+margin_right = 288.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 1 )
-text = "VIDEOGAME TITLE"
+text = "I,THEM"
 __meta__ = {
 "_edit_use_anchors_": false
 }

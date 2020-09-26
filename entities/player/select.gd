@@ -25,14 +25,22 @@ func _input(event: InputEvent) -> void:
 
 
 func grab():
+	disable_items_collisions()
 	var bodies = $Area2D.get_overlapping_bodies()
 	for b in bodies:
 		if b is Item:
 			var item: Item = b
 			grabbed_item = item
-			grabbed_item.disable_collisions()
+
+
+func disable_items_collisions():
+	p.set_collision_mask_bit(1, false)
+	
+	
+func enable_items_collisions():
+	p.set_collision_mask_bit(1, true)
 
 
 func release():
-	grabbed_item.enable_collisions()
+	enable_items_collisions()
 	grabbed_item = null

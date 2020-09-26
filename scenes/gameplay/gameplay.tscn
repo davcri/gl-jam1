@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/gameplay/pause/pause.tscn" type="PackedScene" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://entities/table/table.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/table-side/table-side.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/warriors/warrior.tscn" type="PackedScene" id=8]
-[ext_resource path="res://entities/item/item.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/gameplay/spawn-all-items.gd" type="Script" id=9]
+[ext_resource path="res://entities/item-description-reader/item-description-reader.tscn" type="PackedScene" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "floor.png 0"
@@ -29,6 +30,8 @@
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 5 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
@@ -43,45 +46,48 @@ script = ExtResource( 3 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Warrior" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 104, 45 )
+position = Vector2( 104, 36 )
 
 [node name="Warrior2" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 72, 33 )
+position = Vector2( 104, 19 )
 warrior_sprite_id = 1
 
 [node name="Warrior3" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 72, 13 )
+position = Vector2( 104, 0 )
 warrior_sprite_id = 2
 
 [node name="Warrior4" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 72, -5 )
+position = Vector2( 120, 36 )
 warrior_sprite_id = 3
 
 [node name="TableSide" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 80, 80 )
+position = Vector2( 80, 64 )
 
 [node name="TableSide2" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 144, 80 )
+position = Vector2( 144, 64 )
 
 [node name="Table" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 104, 72 )
+position = Vector2( 104, 56 )
 
 [node name="Table2" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 120, 72 )
+position = Vector2( 120, 56 )
 
 [node name="Table3" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 136, 72 )
+position = Vector2( 136, 56 )
 
-[node name="Item" parent="YSort" instance=ExtResource( 10 )]
-position = Vector2( 88, 88 )
-collision_layer = 2
-collision_mask = 0
+[node name="ItemDescriptionTable" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 192, 111 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 120, 104 )
 
+[node name="SpawnAllItems" type="Node" parent="YSort"]
+script = ExtResource( 9 )
+
+[node name="ItemDescriptionReader" parent="YSort" instance=ExtResource( 10 )]
+
 [node name="WarriorBuyingPosition" type="Position2D" parent="."]
-position = Vector2( 104, 55 )
+position = Vector2( 104, 39 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 128, 72 )

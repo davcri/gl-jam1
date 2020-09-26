@@ -23,12 +23,14 @@ var wanted_item_data: Item.ItemData
 
 func _ready() -> void:
 	_change_texture(warrior_sprite_id)
+	if Engine.is_editor_hint():
+		return
 	wanted_item_data = _calculate_wanted_item()
 	bubble.update_texture(wanted_item_data.texture_name)
 
 
 func _calculate_wanted_item():
-	return ItemsDb.entries[0]
+	return ItemsDb.entries[0] # TODO: implement this
 
 
 func _change_texture(sprite_id):
@@ -55,6 +57,8 @@ func _on_CheckItemArea_item_found(item: Item) -> void:
 	
 func item_is_good(item_data: Item.ItemData):
 	# TODO: add other logic. For now checks only item type
+	if not wanted_item_data.has_meta("type"):
+		return false
 	return wanted_item_data.type == item_data.type
 	
 

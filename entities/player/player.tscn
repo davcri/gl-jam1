@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://scenes/gameplay/player.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/player.png" type="Texture" id=2]
 [ext_resource path="res://entities/player/sprite.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/raycast2d.gd" type="Script" id=4]
@@ -135,9 +135,9 @@ tracks/0/keys = {
 extents = Vector2( 7.5, 8 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 8, 8 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -168,7 +168,7 @@ position = Vector2( 0, -1 )
 shape = SubResource( 9 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-cast_to = Vector2( 0, 16 )
+cast_to = Vector2( 0, 8 )
 script = ExtResource( 4 )
 
 [node name="Select" type="Sprite" parent="."]

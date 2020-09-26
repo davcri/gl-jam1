@@ -1,10 +1,11 @@
 extends Node
 
+# ItemData[]
 var entries = []
 
 const CSV_FILE_PATH = "res://data/items.txt"
 
-func _ready() -> void:
+func _init() -> void:
 	var file = File.new()
 	file.open(CSV_FILE_PATH, File.READ)		
 	while !file.eof_reached():

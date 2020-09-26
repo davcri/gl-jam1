@@ -33,6 +33,4 @@ func handle_input():
 
 
 func calculate_velocity(input: Vector2):
-	var vel = Vector2.ZERO
-	vel = input.normalized() * speed
-	return vel
+	return input.normalized() * speed
